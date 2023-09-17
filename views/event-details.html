@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/bootstrap.css">
+    <title>Event Details</title>
+</head>
+
+<style>
+    .bannerImg {
+        width: 100%;
+    }
+
+    h1 {
+        text-align: center;
+        font-size: 4em;
+        font-weight: bold;
+        padding-top: 2%;
+        color: #1C3D6B;
+    }
+
+    h2 {
+        font-size: large;
+    }
+
+    .contentContainer {
+        margin-top: 1%;
+        margin-bottom: 1%;
+        text-align: left;
+        width: 90%;
+        background-color: white;
+        padding: 3%;
+        border-radius: 5px;
+        border: 2px solid #B3B7BF;
+    }
+
+    .containerElement {
+        margin-top: 2%;
+        margin-bottom: 3%;
+    }
+
+    .nav {
+        background-color: #051A37;
+        font-weight: bold;
+    }
+
+    .navText {
+        width: 50%;
+        margin-top: 1%;
+        margin-left: 1%;
+        margin-bottom: 1%;
+        color: white;
+        font-size: 3em;
+        font-weight: bold;
+        text-decoration: none;
+    }
+
+    .navImg {
+        margin-right: 2%;
+    }
+
+</style>
+
+<body style="background-color: #dde6f1;">
+    <nav class="bg-body-tertiary">
+        <div class="container-fluid nav">
+          <a class="navText" href="/" >
+            <img src="/img/team_logo.png" alt="Logo" width="100" class="d-inline-block align-text-top navImg">
+            Quantum Panda
+          </a>
+        </div>
+    </nav>
+
+    <header>
+        <img src="/img/event.png" alt="Banner-image" class="bannerImg">
+    </header>
+    <h1><%= event.name %></h1>
+    <div class="container-lg contentContainer">
+        <div class="containerElement">
+            <h2>Event ID</h2>
+            <span><%= event.id %></span>
+        </div>
+
+        <div class="containerElement">
+            <h2>Name</h2>
+            <span><%= event.name %></span>
+        </div>
+        
+        <div class="containerElement">
+            <h2>Description</h2>
+            <span><%= event.description %></span>
+        </div>
+
+        <div class="containerElement">
+            <h2>Start Date Time</h2>
+            <span><%= event.startDateTime.toLocaleDateString() + ", " + event.startDateTime.toLocaleTimeString() %></span>
+        </div>
+
+        <div class="containerElement">
+            <h2>End Date Time</h2>
+            <span><%= event.endDateTime.toLocaleDateString() + ", " + event.endDateTime.toLocaleTimeString() %></span>
+        </div>
+
+        <div class="containerElement">
+            <h2>Durations</h2>
+            <span><%= Math.round(event.durationInMinutes/60) + " hour(s)" %></span>
+        </div>
+
+        <div class="containerElement">
+            <h2>Is Active</h2>
+            <div>
+                <% if (event.isActive) { %>
+                    <img src="/img/check.png" alt="True" width="20" height="20">
+                <% } else { %>
+                    <!-- You can display another image for when IsActive is false -->
+                    <img src="/img/delete.png" alt="False" width="20" height="20">
+                <% } %>
+            </div>
+            
+        </div>
+        
+        <div class="containerElement">
+            <h2>Capacity</h2>
+            <span><%= event.capacity %></span>
+        </div>
+
+        <div class="containerElement">
+            <h2>Ticket Available</h2>
+            <span><%= event.ticketsAvailable %></span>
+        </div>
+
+        <div class="containerElement">
+            <h2>Category Id</h2>
+            <span><%= event.categoryId %></span>
+        </div>
+    
+    </div>
+
+</body>
+</html>

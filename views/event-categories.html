@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/bootstrap.css">
+    <title>Event Categories</title>
+</head>
+<style>
+    .bannerImg {
+        width: 100%;
+    }
+
+    h1 {
+        text-align: center;
+        font-size: 4em;
+        font-weight: bold;
+        padding-top: 2%;
+        color: #1C3D6B;
+    }
+
+    table {
+        margin-top: 3%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 10%;
+        width: 95%;
+        text-align: left;
+        
+    }
+
+    tr {
+        border-bottom: 2px solid #1C3D6B;;
+    }
+
+    th {
+        background-color: #C6CEDD;
+        padding: 1%;
+    }
+
+    td {
+        background-color: #DFE2F1;
+        padding: 1%;
+    }
+
+    .btn {
+        border: 2px solid #C2BFAB;
+        background-color: #EBE7D0;
+        color: #5D593C;
+        border-radius: 10px;
+        font-weight: 500;
+        transition: background-color 100ms ease-in-out;
+        padding: 8px 18px;
+        margin: 2%;
+    }
+
+    .btn:hover {
+        border: 2px solid #ABADC8;
+        background-color: #D3D0EB;
+        color: #01204C;
+        border-radius: 10px;
+    }
+
+    .cellImage {
+        width: 400px;
+    }
+
+    .nav {
+        background-color: #051A37;
+        font-weight: bold;
+    }
+
+    .navText {
+        width: 50%;
+        margin-top: 1%;
+        margin-left: 1%;
+        margin-bottom: 1%;
+        color: white;
+        font-size: 3em;
+        font-weight: bold;
+        text-decoration: none;
+    }
+
+    .navImg {
+        margin-right: 2%;
+    }
+    
+    
+</style>
+<body style="background-color: #dde6f1;">
+    <nav class="bg-body-tertiary">
+        <div class="container-fluid nav">
+          <a class="navText" href="/" >
+            <img src="/img/team_logo.png" alt="Logo" width="100" class="d-inline-block align-text-top navImg">
+            Quantum Panda
+          </a>
+        </div>
+    </nav>
+
+    <header>
+        <img src="/img/category-page-banner.png" alt="Category-Banner-image" class="bannerImg">
+    </header>
+
+    <h1>Category List</h1>
+
+    <table>
+        <tr>
+            <th style="width: 5%">Id</th>
+            <th style="width: 10%">Name</th>
+            <th style="width: 20%;">Description</th>
+            <th style="width: 45%" colspan="2">Image</th>
+            <th style="width: 10%">Created Date</th>
+            <th style="width: 10%">Actions</th>
+        </tr>
+        
+        <% for (let index = 0; index < cat.length; index++) { %>
+            <tr>
+                <td><%= cat[index].id %></td>
+                <td><%= cat[index].name %></td>
+                <td><%= cat[index].description %></td>
+                <td><%= cat[index].image %></td>
+                <td><img src= <%=cat[index].image %> alt="" class= "cellImage"></td>
+                <td><%= cat[index].createdDate.toLocaleDateString() + ", " + cat[index].createdDate.toLocaleTimeString()%></td>
+                <td><a href="/John/category/<%= cat[index].id %>" ><button type="button" class="btn">View</button></a></td>
+            </tr>
+            
+        <% } %>
+    </table>
+</body>
+</html>

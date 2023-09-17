@@ -1,0 +1,144 @@
+<html>
+    <head>
+        <title>Category Detail</title>
+        <link rel="stylesheet" href="/bootstrap.css">
+        <script src="server.js" type="module"></script>
+    </head>
+
+    <style>
+        .banner-img {
+            width: 100%;
+        }
+
+        .header {
+            text-align: center;
+            font-size: 4em;
+            font-weight: bold;
+            padding-top: 2%;
+            color: #1C3D6B;
+        }
+
+        
+        .button-content {
+            padding-top: 3%;
+        }
+
+        .btn {
+            border: 2px solid #E4D69C;
+            border-radius: 10px;
+            color: #01204C;
+            font-weight: 500;
+            background-color: #EFE8C0;
+            transition: background-color 100ms ease-in-out;
+            padding: 0.75% 0.75%;
+            margin: 0.5% 1%;
+        }
+
+        .btn:hover {
+            border: 2px solid #A69BC2;
+            border-radius: 10px;
+            background-color: #DCD4EF;
+            color: #434149;
+        }
+
+        .category-details {
+            width: 1296px;
+            height: 250px;
+            background-color: white;
+            margin-bottom: 15px;
+            margin-top: 15px;
+            border-radius: 10px;
+        }
+
+        .category-details-text {
+            margin-left: 20px;
+            margin-bottom: 15px;
+            margin-top: 30px;
+        }
+
+    </style>
+
+    <body style="background-color: #dde6f1;">
+        <img class="banner-img" src="/img/bannercategory.png" alt="">
+        <h2 style="text-align: center;"><%= category.name %></h2>
+        <div class="container">
+            <div class="row row-cols-1 g-3">
+                <div class="col">
+                    <table class="table table-hover">
+                        <thead>
+                            <div class="category-details">
+                                <div class="category-details-text">
+                                    <h5 style="margin-top: 15px;">Category ID</h5>
+                                    <h6><%= category[0].id %></h6>
+                                    <h5 style="margin-top: 15px;">Name</h5>
+                                    <h6><%= category[0].name %></h6>
+                                    <h5 style="margin-top: 15px;">Description</h5>
+                                    <h6><%= category[0].description %></h6>
+                                    <h5 style="margin-top: 15px;">Created Date Time</h5>
+                                    <h6><%= category[0].createdDate %></h6>
+                                </div>
+                            </div>
+
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Start</th>
+                                <th>End</th>
+                                <th>Duration</th>
+                                <th>Is Active</th>
+                                <th>Capacity</th>
+                                <th>Tickets Avalilable</th>
+                                <th>Actions</th>
+                            </tr>
+                            
+
+                            <tbody>
+                                <% function formatDate(dateTime) { %>
+                                    <%- new Intl.DateTimeFormat('en-US', {
+                                        year: 'numeric',
+                                        month: 'numeric',
+                                        day: 'numeric',
+                                        hour: 'numeric',
+                                        minute: 'numeric',
+                                        second: 'numeric',
+                                        hour12: true
+                                    }).format(dateTime) %>
+                                <% } %>
+    
+                                <% function formatDuration(minutes) { %>
+                                    <% const hours = Math.floor(minutes / 60); %>
+                                    <% const remainingMinutes = minutes % 60; %>
+                                    <%= hours > 0 ? `${hours} hour(s)` : '' %>
+                                    <%= remainingMinutes > 0 ? ` ${remainingMinutes} minutes` : '' %>
+                                <% } %>
+                                
+                                
+
+                                <% for (let i = 0; i < categorydetail.length; i++) { %>
+                                    <tr>
+                                        <th scope="row"><%= categorydetail[i].id %></th>
+                                        <td><%= categorydetail[i].name %></td>
+                                        <td><%= formatDate(categorydetail[i].startDateTime) %></td>
+                                        <td><%= formatDate(categorydetail[i].endDateTime) %></td>
+                                        <td><%= formatDuration(categorydetail[i].durationInMinutes) %></td>
+                                        <td>
+                                            <% if (categorydetail[i].isActive) { %>
+                                                <img src="/img/check.png" alt="True" width="20" height="20">
+                                            <% } else { %>
+                                                <!-- You can display another image for when IsActive is false -->
+                                                <img src="/img/delete.png" alt="False" width="20" height="20">
+                                            <% } %>
+                                        </td>
+                                        <td><%= categorydetail[i].capacity %></td>
+                                        <td><%= categorydetail[i].ticketsAvailable %></td>
+                                        <td>
+                                            <a type="button" class="btn btn-primary" href="/category/33254834/event/<%=categorydetail[i].id%>">View</a>
+                                        </td>
+                                        
+                                    </tr>
+                                    
+                                <% } %>
+                
+          
+    </body>
+</html>

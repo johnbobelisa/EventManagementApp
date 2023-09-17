@@ -1,0 +1,130 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="/bootstrap.css">
+        <link href="/bootstrap.min.css" rel="stylesheet" />
+
+    </head>
+
+    <style>
+        .banner-img {
+            width: 100%;
+        }
+
+        .header-text {
+            text-align: center;
+            font-size: 3em;
+            font-weight: bold;
+            color: #000000;
+            margin-bottom: 35px;
+        }
+
+        .header-subtext {
+            text-align: center;
+            margin-top: -30px;
+            color: #000000;
+        }
+
+        .content-2 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .border {
+            border-width: 3px;
+            border-radius: 10px;
+            border-style: solid;
+            border-color: rgba(182, 182, 182, 0.5); 
+            padding: 1em;
+            width: 40%;
+            height: 100%;
+            background-color: white;
+        }
+
+
+        .form-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80vh; 
+        }
+        
+        .form-container .border {
+            max-width: 800px; 
+            margin: 0 auto; 
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            padding-bottom: 35px;
+        }
+
+        .form-group label {
+            margin-bottom: 5px; 
+        }
+
+        .form-control-lg {
+            height: 100px;
+            vertical-align: top;
+            line-height: normal;
+            resize: vertical; /* Allow vertical resizing of textarea */
+        }
+    </style>
+
+    <body style="background-color: rgb(244, 244, 244);">
+        <img src="/img/banner-1.png" alt="Banner-image" class="banner-img">
+        <a href="/"><img src="/img/icons8-home-50 (1).png" style="margin-left: 25px; margin-top: 10px;" alt=""></a>
+        <h2 class="header-text">Add Event</h2>
+        <h3 class="header-subtext">Fill in event detalis & submit</h3>
+        <div class="content-2">
+            <div class="border">
+                <form action="/John/add-event-post" method="POST">
+                    <div class="form-group">
+                        <label for="name">Event Name</label>
+                        <input type="text" name="name" class="form-control" id="name" pattern="[A-Za-z0-9\s]+" placeholder="Enter event name." required>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea type="text" pattern=".*" name="description" class="form-control-lg" id="description" placeholder=""></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="image">Image</label>
+                        <input type="text" class="form-control" name="image" id="image"
+                               placeholder="Enter static resource path">
+                    </div>                    
+                    <div class="form-group">
+                        <label for="datetime">Start Date Time</label>
+                        <input type="datetime-local" name="datetime" class="form-control" id="datetime" value="" placeholder="mm/dd/yyyy, " required>
+                    </div>
+                    <div class="form-group">
+                        <label for="duration">Duration in minutes</label>
+                        <input type="number" name="duration" class="form-control" id="duration" placeholder="Event duration in minutes." required>
+                    </div>
+                    <div class="form-group">
+                        <label for="isActive">Is Active</label>
+                        <select class="form-control" id="isActive" name="isActive">
+                            <option value="">-- Select --</option>
+                            <option value="true">True</option>
+                            <option value="false">False</option>
+                        </select>
+                    </div>                    
+                    <div class="form-group">
+                        <label for="capacity">Capacity</label>
+                        <input type="number" class="form-control" id="capacity" name="capacity" placeholder="Event Capacity">
+                    </div>
+                    <div class="form-group">
+                        <label for="tickets">Tickets Available</label>
+                        <input type="number" name="tickets" class="form-control" id="tickets" placeholder="Tickets Available (optional).">
+                    </div>
+                    <div class="form-group">
+                        <label for="categoryid">Category id</label>
+                        <input type="text" name="categoryid" class="form-control" id="categoryid" placeholder="Enter category id" required>
+                    </div>
+
+                    <button class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>  
+    </body>
+</html>

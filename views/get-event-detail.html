@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/bootstrap.css">
+    <title>Event Detail</title>
+</head>
+
+<style>
+    .bannerImg {
+        width: 100%;
+    }
+    
+    h1 {
+        text-align: center;
+        font-size: 4em;
+        font-weight: bold;
+        padding-top: 2%;
+        color: #1C3D6B;
+    }
+
+    .textField {
+        font-size: 1.25em;
+        text-align: center;
+    }
+
+    .contentContainer {
+        margin-top: 1%;
+        margin-bottom: 1%;
+        text-align: center;
+        width: 50%;
+        background-color: white;
+        padding: 3%;
+        border-radius: 5px;
+        border: 2px solid #B3B7BF;
+    }
+
+    .btnSearch {
+        margin: 1%;
+    }
+
+    .nav {
+        background-color: #051A37;
+        font-weight: bold;
+    }
+
+    .navText {
+        width: 50%;
+        margin-top: 1%;
+        margin-left: 1%;
+        margin-bottom: 1%;
+        color: white;
+        font-size: 3em;
+        font-weight: bold;
+        text-decoration: none;
+    }
+
+    .navImg {
+        margin-right: 2%;
+    }
+
+</style>
+
+<body style="background-color: #dde6f1;">
+
+    <nav class="bg-body-tertiary">
+        <div class="container-fluid nav">
+          <a class="navText" href="/" >
+            <img src="/img/team_logo.png" alt="Logo" width="100" class="d-inline-block align-text-top navImg">
+            Quantum Panda
+          </a>
+        </div>
+    </nav>
+
+    <header>
+        <img src="/img/banner-1.png" alt="Banner-image" class="bannerImg">
+    </header>
+
+    <h1>Search Event Details</h1>
+    <p class="textField">Provide event id</p>
+
+    <div class="container-lg contentContainer">
+        <form action="/category/33254834/search_event" method="POST">
+            <div class="input-group input-group-lg mb-3">
+                <span class="input-group-text">Event ID</span>
+                <input type="text" class="form-control" placeholder="Enter event id" name="eventId" id="eventId" required>
+            </div>
+    
+            <button class="btn btn-primary btnSearch">Search</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="/bootstrap.css">
+    </head>
+
+    <style>
+        .banner-img {
+            width: 100%;
+        }
+
+        .header {
+            text-align: center;
+            font-size: 4em;
+            font-weight: bold;
+            padding-top: 2%;
+            color: #1C3D6B;
+        }
+
+    </style>
+
+    <body style="background-color: #dde6f1;">
+        <img src="/img/banner-1.png" alt="Banner-image" class="banner-img">
+        <a href="/"><img src="/img/icons8-home-50 (1).png" style="margin-left: 25px; margin-top: 10px;" alt=""></a>
+        <h1 class="header">Category Page</h1>
+        <form id="categoryForm" method="GET" style="margin-left: 25px;">
+            <label for="categoryID">Enter Category ID:</label>
+            <input type="text" id="categoryID" name="id">
+            <button class="btn btn-primary" type="submit">Submit</button>
+        </form>
+        
+        <script>
+          document.getElementById("categoryForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            const categoryID = document.getElementById("categoryID").value;
+            window.location.href = `/John/category/${categoryID}`;
+          });
+        </script>
+                
+    </body>
+</html>

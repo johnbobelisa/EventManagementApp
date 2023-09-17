@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: event-schema.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: event-schema.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const mongoose = require('mongoose');
+
+/**
+ * This class represents an event with its details and methods.
+ * @class
+ */
+const eventSchema = new mongoose.Schema({
+  /**
+   * The Event name.
+   */
+  name: {
+    type: String,
+    required: true
+  },
+  /**
+   * The description of the event.
+   */
+  description: {
+    type: String,
+    default: ''
+  },
+  /**
+   * The start dateTime of the event.
+   */
+  startDateTime: {
+    type: Date,
+    required: true
+  },
+  /**
+   * The duration of the event in minutes.
+   */
+  durationInMinutes: {
+    type: Number,
+    required: true
+  },
+  /**
+   * Whether the event is active or not.
+   */
+  isActive: {
+    type: Boolean,
+    default: true
+  },
+  /**
+   * The image URL of the event.
+   */
+  image: {
+    type: String,
+    default: "event.png"
+  },
+  /**
+   * The capacity of the event.
+   */
+  capacity: {
+    type: Number,
+    default: 1000,
+    validate: {
+      validator: function (value) {
+        return value >= 10 &amp;&amp; value &lt;= 2000;
+      },
+      message: "capacity not in between 10 and 2000 (inclusive)"
+    },
+  },
+  /**
+   * The number of available tickets for the event.
+   */
+  ticketsAvailable: {
+    type: Number,
+    validate: {
+      validator: function(value) {
+        if (!value &amp;&amp; value != 0) {
+          this.ticketsAvailable = this.capacity;
+        }
+      }
+    }
+  },
+  /**
+   * The category ID of the event.
+   */
+  categoryId: {
+    type: String,
+    required: true
+  },
+  /**
+   * Unique event ID.
+   */
+  id: {
+    type: String,
+    unique: true,
+    default: function () {
+      return this.ID();
+    },
+  },
+  /**
+   * The end dateTime of the event.
+   */
+  endDateTime: {
+    type: Date,
+    default: function() {
+      return this.endDateTimes();
+    }
+  },
+  categoryList: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Category' // Reference to the EventCategory model
+    },
+  ]
+});
+
+/**
+ * Generates 3 random uppercase letters.
+ * @returns {string} Random letters.
+ */
+eventSchema.methods.generateRandomletters = function () {
+  const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  let result = '';
+  for (let i = 0; i &lt; 2; i++) {
+    result += alphabet.charAt(Math.floor(Math.random() * 26));
+  }
+  return result;
+};
+
+/**
+ * Generates a random four-digit.
+ * @param {number} min - The minimum value of the range.
+ * @param {number} max - The maximum value of the range.
+ * @returns {number} Random four-digit number.
+ */
+eventSchema.methods.generateFourDigits = function (min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+};
+
+/**
+ * Generates a unique ID for the event.
+ * @returns {string} Unique event ID.
+ */
+eventSchema.methods.ID = function () {
+  const start = 'E' + this.generateRandomletters();
+  const FourDigits = this.generateFourDigits(1000, 9999);
+  return `${start}-${FourDigits}`;
+};
+
+/**
+ * Generates endDateTimes by adding the 
+ * start time and duration of the event.
+ * @returns {Date} DateTime for the end of the event. 
+ */
+
+eventSchema.methods.endDateTimes = function() {
+  const START_TIME = this.startDateTime.getTime(); 
+  const DURATION_TIME = this.durationInMinutes * 60 * 1000;
+  return new Date(START_TIME + DURATION_TIME);
+};
+
+// Create and export the Event model based on the schema
+
+module.exports = mongoose.model("Event", eventSchema);
+
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="eventSchema.html">eventSchema</a></li></ul><h3>Global</h3><ul><li><a href="global.html#capacity">capacity</a></li><li><a href="global.html#categoryCount">categoryCount</a></li><li><a href="global.html#categoryId">categoryId</a></li><li><a href="global.html#categorySchema">categorySchema</a></li><li><a href="global.html#createdDate">createdDate</a></li><li><a href="global.html#description">description</a></li><li><a href="global.html#durationInMinutes">durationInMinutes</a></li><li><a href="global.html#endDateTime">endDateTime</a></li><li><a href="global.html#eventCount">eventCount</a></li><li><a href="global.html#eventList">eventList</a></li><li><a href="global.html#generateFourDigits">generateFourDigits</a></li><li><a href="global.html#generateId">generateId</a></li><li><a href="global.html#generateRandomletters">generateRandomletters</a></li><li><a href="global.html#id">id</a></li><li><a href="global.html#image">image</a></li><li><a href="global.html#isActive">isActive</a></li><li><a href="global.html#mongoose">mongoose</a></li><li><a href="global.html#name">name</a></li><li><a href="global.html#operationSchema">operationSchema</a></li><li><a href="global.html#recordsCreated">recordsCreated</a></li><li><a href="global.html#recordsDeleted">recordsDeleted</a></li><li><a href="global.html#recordsUpdated">recordsUpdated</a></li><li><a href="global.html#startDateTime">startDateTime</a></li><li><a href="global.html#ticketsAvailable">ticketsAvailable</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Thu Sep 14 2023 21:29:09 GMT+0800 (Malaysia Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

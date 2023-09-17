@@ -1,0 +1,186 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="/bootstrap.css">
+    </head>
+
+    <style>
+        .bannerImg {
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 4em;
+            font-weight: bold;
+            padding-top: 2%;
+            color: #1C3D6B;
+        }
+
+        .content1 {
+            background-color: #D3D7E4;
+            margin-top: 3%;
+            margin-bottom: 5%;
+            text-align: center;
+            padding-top: 2%;
+            padding-bottom: 2%;
+        }
+
+        h2 {
+            font-size: 2.5em;
+            font-weight: bolder;
+            color: #01204C;
+        }
+
+        .buttonContent {
+            padding-top: 3%;
+        }
+
+        .btn {
+            border: 2px solid #E4D69C;
+            border-radius: 10px;
+            color: #01204C;
+            font-weight: 500;
+            background-color: #EFE8C0;
+            transition: background-color 100ms ease-in-out;
+            padding: 0.75% 0.75%;
+            margin: 0.5% 1%;
+        }
+
+        .btn:hover {
+            border: 2px solid #A69BC2;
+            border-radius: 10px;
+            background-color: #DCD4EF;
+            color: #434149;
+        }
+
+        .teamBanner {
+            border-radius: 5px;
+            width: 60%;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 2%;
+        }
+
+        .content2 {
+            font-size: 1.5em;
+            text-align: center;
+            margin-bottom: 5%;
+        }
+
+        .card-group-content {
+            margin-top: 2%;
+            margin-bottom: 5%;
+            margin-left: 5%;
+            margin-right: 5%;
+        }
+
+        .card-content {
+            text-align: center;
+            margin: auto;
+            color: #031022;
+        }
+
+        .card-content p {
+            font-weight: 600;
+            color: #1C3D6B;
+        }
+
+        .nav {
+            background-color: #051A37;
+            font-weight: bold;
+        }
+
+        .navText {
+            width: 50%;
+            margin-top: 1%;
+            margin-left: 1%;
+            margin-bottom: 1%;
+            color: white;
+            font-size: 3em;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .navImg {
+            margin-right: 2%;
+        }
+
+    </style>
+
+    <body style="background-color: #dde6f1;">
+
+        <nav class="bg-body-tertiary">
+            <div class="container-fluid nav">
+              <a class="navText" href="/" >
+                <img src="/img/team_logo.png" alt="Logo" width="100" class="d-inline-block align-text-top navImg">
+                Quantum Panda
+              </a>
+            </div>
+        </nav>
+
+        <header>
+            <img src="/img/banner-1.png" alt="bannerImage" class="bannerImg">
+        </header>
+        <h1>Admin Panel</h1>
+
+        <div class="card-group card-group-content">
+            <div class="card card-content">
+                <div class="card-body">
+                    <h2 class="card-title"><%= stat.categoryCount %></h2>
+                    <p class="card-text">Category</p>
+                </div>
+              </div>
+              <div class="card card-content">
+                <div class="card-body">
+                    <h2 class="card-title"><%= stat.eventCount %></h2>
+                    <p class="card-text">Event</p>
+                </div>
+              </div>
+              <div class="card card-content">
+                <div class="card-body">
+                    <h2 class="card-title"><%= stat.recordsCreated %></h2>
+                    <p class="card-text">Records Created</p>
+                </div>
+              </div>
+              <div class="card card-content">
+                <div class="card-body">
+                    <h2 class="card-title"><%= stat.recordsDeleted %></h2>
+                    <p class="card-text">Records Deleted</p>
+                </div>
+              </div>
+              <div class="card card-content">
+                <div class="card-body">
+                    <h2 class="card-title"><%= stat.recordsUpdated %></h2>
+                    <p class="card-text">Records Updated</p>
+                </div>
+              </div>
+        </div>
+
+        <div class = "content1">
+            <h2>Task Group 1 (student #1)</h2>
+            <div class="buttonContent">
+                <a href="/category/33254834/add-category"><button type="button" class="btn">Add Category</button></a>
+                <a href="/category/33254834/event-categories"><button type="button" class="btn">List All Categories</button></a>
+                <a href="/category/33254834/search-category"><button type="button" class="btn">List Categories By Keyword</button></a>
+                <a href="/category/33254834/search-event"><button type="button" class="btn">Show Event Details</button></a>
+                <a href="/category/33254834/delete-category"><button type="button" class="btn">Delete Categories By ID</button></a>
+            </div>
+        </div>
+        <div class = "content1">
+            <h2>Task Group 2 (student #2)</h2>
+            <div class="buttonContent">
+                <a type="button" class="btn" href="/John/event/add">Add Event</a>
+                <a type="button" class="btn" href="/John/events">List All Events</a>
+                <a type="button" class="btn" href="/John/sold-out-events">List Sold Out Events</a>
+                <a type="button" class="btn" href="/John/category/">Category Detail Page</a>
+                <a type="button" class="btn" href="/John/event/delete">Delete Event By ID</a>
+                
+            </div>
+        </div>
+
+        <div class="content2">
+            <h2>Developed by Quantum Panda</h2>
+            <img src="/img/quantum_panda_banner.png" alt="teamBanner" class="teamBanner">
+        </div>
+    </body>
+</html>

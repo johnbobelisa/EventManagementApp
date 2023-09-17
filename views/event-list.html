@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en" data-bs-theme="auto">
+
+<head>
+    <title>List of all events</title>
+    <link href="/bootstrap.min.css" rel="stylesheet">
+    <script src="server.js" type="module"></script>
+</head>
+
+<style>
+    .btn {
+        border: 2px solid #C2BFAB;
+        background-color: #EBE7D0;
+        color: #5D593C;
+        border-radius: 10px;
+        font-weight: 500;
+        transition: background-color 100ms ease-in-out;
+        padding: 8px 18px;
+        margin: 2%;
+    }
+
+    .btn:hover {
+        border: 2px solid #ABADC8;
+        background-color: #D3D0EB;
+        color: #01204C;
+        border-radius: 10px;
+    }
+
+    .bannerImg {
+        width: 95%;
+        margin-left: 40px;
+    }
+
+    .headerText {
+        text-align: center;
+        font-size: 2.5em;
+        color: #000000;
+        margin-bottom: 35px;
+    }
+
+</style>
+
+<body>
+
+    <img src="/img/banner-1.png" alt="Banner-image" class="bannerImg">
+    <a href="/"><img src="/img/icons8-home-50 (1).png" style="margin-left: 25px; margin-top: 10px;" alt=""></a>
+    <h3 class="headerText">Event List</h3>
+    <div class="container">
+        <div class="row row-cols-1 g-3">
+            <div class="col">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Start</th>
+                            <th>End</th>
+                            <th>Duration</th>
+                            <th>Is Active</th>
+                            <th>Capacity</th>
+                            <th>Tickets Avalilable</th>
+                            <th>Category ID</th>
+                            <th>Actions</th>
+                        </tr>
+
+                    <tbody>
+                        <% function formatDate(dateTime) { %>
+                            <%- new Intl.DateTimeFormat('en-US', { year: 'numeric' , month: 'numeric' , day: 'numeric' ,
+                                hour: 'numeric' , minute: 'numeric' , second: 'numeric' , hour12: true
+                                }).format(dateTime) %>
+                                <% } %>
+
+                                    <% function formatDuration(minutes) { %>
+                                        <% const hours=Math.floor(minutes / 60); %>
+                                            <% const remainingMinutes=minutes % 60; %>
+                                                <%= hours> 0 ? `${hours} hour(s)` : '' %>
+                                                    <%= remainingMinutes> 0 ? ` ${remainingMinutes} minutes` : '' %>
+                                                        <% } %>
+
+                                                            <% for (let i=0; i < events.length; i++) { %>
+                                                                <tr>
+                                                                    <th scope="row">
+                                                                        <%= events[i].id %>
+                                                                    </th>
+                                                                    <td>
+                                                                        <%= events[i].name %>
+                                                                    </td>
+                                                                    <td>
+                                                                        <%= formatDate(events[i].startDateTime) %>
+                                                                    </td>
+                                                                    <td>
+                                                                        <%= formatDate(events[i].endDateTime) %>
+                                                                    </td>
+                                                                    <td>
+                                                                        <%= formatDuration(events[i].durationInMinutes)
+                                                                            %>
+                                                                    </td>
+                                                                    <td>
+                                                                        <% if (events[i].isActive) { %>
+                                                                            <img src="/img/check.png" alt="True"
+                                                                                width="20" height="20">
+                                                                            <% } else { %>
+                                                                                <!-- You can display another image for when IsActive is false -->
+                                                                                <img src="/img/delete.png" alt="False"
+                                                                                    width="20" height="20">
+                                                                                <% } %>
+                                                                    </td>
+                                                                    <td>
+                                                                        <%= events[i].capacity %>
+                                                                    </td>
+                                                                    <td>
+                                                                        <%= events[i].ticketsAvailable %>
+                                                                    </td>
+                                                                    <td>
+                                                                        <%= events[i].categoryId %>
+                                                                    </td>
+                                                                    <td><a
+                                                                            href="/category/33254834/event/<%= events[i].id %>"><button
+                                                                                type="button"
+                                                                                class="btn">View</button></a></td>
+                                                                </tr>
+                                                                <% } %>
+                    </tbody>
+                    </thead>
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+
+</html>

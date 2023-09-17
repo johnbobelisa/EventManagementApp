@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="/bootstrap.css">
+    </head>
+
+    <style>
+        .banner-img {
+            width: 100%;
+        }
+
+        .header {
+            text-align: center;
+            font-size: 4em;
+            font-weight: bold;
+            padding-top: 2%;
+            color: #1C3D6B;
+        }
+
+    </style>
+
+    <body style="background-color: #dde6f1;">
+        <img src="/img/banner-1.png" alt="Banner-image" class="banner-img">
+        <a href="/"><img src="/img/icons8-home-50 (1).png" style="margin-left: 25px; margin-top: 10px;" alt=""></a>
+        <h1 class="header">Delete Event By ID</h1>
+        <form action="/John/event/remove" method="GET" style="margin-left: 25px;">
+            <label for="eventId">Enter Event ID:</label>
+            <input type="text" id="eventId" name="id">
+            <button class="btn btn-primary" type="submit">Delete Event</button>
+        </form>
+    </body>
+</html>
